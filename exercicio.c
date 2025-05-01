@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <conio.h>
-
+#include <string.h>
 int main( )
 {
   struct cadastro {
@@ -9,66 +9,198 @@ int main( )
      char nome[30];
      char endereco[50];
      char telefone[15];
-     char dataNascimento[10];
+     char dataNascimento[11];
   } cad, cad1, cad2, cad3;
+  
 
-  char opcao1, opcao2, opcao3;
-  int compLogin, compSenha;
+
+  char opcao, opcao2;
+  int compLogin1, compSenha1, compLogin2 ,compLogin3, compSenha2,compSenha3, num_usuarios;
+
   printf("CADASTRO DE USUARIO\n\n");
   printf("Informe o login do usuario (ate 20 caracteres): ");
-  gets(cad1.login); //scanf("%s", cad1.login);
+  scanf(" %s", &cad1.login);
   printf("Informe a senha do usuario (ate 20 caracteres): ");
-  gets(cad1.senha); //scanf("%s", cad1.senha);
+  scanf(" %s", &cad1.senha);
   printf("Informe o nome do usuario (ate 30 caracteres): ");
-  gets(cad1.nome); //scanf("%s", cad1.nome);
+  scanf(" %[^\n]", &cad1.nome);//usei essa formatação no scanf para aceitar espaços(" ") nesses campos
   printf("Informe o endereco do usuario (ate 50 caracteres): ");
-  gets(cad1.endereco); //scanf("%s", cad1.endereco);
-  printf("Informe o telefone do usuario (ate 15 caracteres): ");
-  gets(cad1.telefone); //scanf("%s", cad1.endereco);
-  printf("Informe a data de nascimento usuario: ");
-  gets(cad1.dataNascimento); //scanf("%s", cad1.endereco);
+  scanf(" %[^\n]", &cad1.endereco);
+  printf("Informe o telefone do usuario (ate 11 caracteres): ");
+  scanf(" %s", &cad1.telefone);
+  printf("Informe a data de nascimento do usuario (ate 8 caracteres): ");
+  scanf(" %s", &cad1.dataNascimento);
+  num_usuarios = 1;
 
-  printf("\n\nDESEJA CADASTRAR UM NOVO USUARIO (S/N)? ");
-  scanf("%c", &opcao1);
+  printf("\n\nVOCE DESEJA: (C)ADASTRAR UM NOVO USUARIO, (A)TUALIZAR O CADASTRO, (V)ER OS SEUS DADOS, \n(S)AIR DO PROGRAMA(QUALQUER OUTRA TECLA ENCERRA): ");
+  scanf(" %c", &opcao);
 
-  if (opcao1 == 'N'){
-    printf("\nDESEJA ATUALIZAR O SEU USUARIO (S/N)? ");
-    getchar();
-    scanf("%c", &opcao2);
+  while((opcao == 'C') || (opcao == 'c')){
+    if (num_usuarios == 1){
+        printf("CADASTRO DE USUARIO 2\n\n");
+        printf("Informe o login do usuario (ate 20 caracteres): ");
+        scanf(" %s", &cad2.login);
+        printf("Informe a senha do usuario (ate 20 caracteres): ");
+        scanf(" %s", &cad2.senha);
+        printf("Informe o nome do usuario (ate 30 caracteres): ");
+        scanf(" %[^\n]", &cad2.nome);
+        printf("Informe o endereco do usuario (ate 50 caracteres): ");
+        scanf(" %[^\n]", &cad2.endereco);
+        printf("Informe o telefone do usuario (ate 11 caracteres): ");
+        scanf(" %s", &cad2.telefone);
+        printf("Informe a data de nascimento do usuario (ate 8 caracteres): ");
+        scanf(" %s", &cad2.dataNascimento);
+        num_usuarios++;
+    }
+    else if(num_usuarios == 2){
+        printf("CADASTRO DE USUARIO 3\n\n");
+        printf("Informe o login do usuario (ate 20 caracteres): ");
+        scanf(" %s", &cad3.login);
+        printf("Informe a senha do usuario (ate 20 caracteres): ");
+        scanf(" %s", &cad3.senha);
+        printf("Informe o nome do usuario (ate 30 caracteres): ");
+        scanf(" %[^\n]", &cad3.nome);
+        printf("Informe o endereco do usuario (ate 50 caracteres): ");
+        scanf(" %[^\n]", &cad3.endereco);
+        printf("Informe o telefone do usuario (ate 11 caracteres): ");
+        scanf(" %s", &cad3.telefone);
+        printf("Informe a data de nascimento do usuario (ate 8 caracteres): ");
+        scanf(" %s", &cad3.dataNascimento);
+        num_usuarios++;
+    }
+    else{
+      printf("\nLIMITE DE USUARIOS ATINGITO!! ESCOLHA OUTRA OPCAO");
+    }
 
-    if (opcao2 == 'S'){
+    printf("\n\nVOCE DESEJA: (C)ADASTRAR UM NOVO USUARIO, (A)TUALIZAR O CADASTRO, (V)ER OS SEUS DADOS, (S)AIR DO PROGRAMA: ");
+    scanf(" %c", &opcao);
+  }
+   
+  while((opcao == 'A') || (opcao == 'a')){
       printf("\nInforme o login do usuario (ate 20 caracteres): ");
-      scanf("%s", cad.login);
-      compLogin = strcmp(cad.login, cad1.login); //Comparação com Strcmp
+      scanf(" %s", cad.login);
+      compLogin1 = strcmp(cad.login, cad1.login); //Comparação com Strcmp
+      compLogin2 = strcmp(cad.login, cad2.login); //Comparação com Strcmp
+      compLogin3 = strcmp(cad.login, cad3.login); //Comparação com Strcmp
       printf("Informe a senha do usuario (ate 20 caracteres): ");
-      scanf("%s", cad.senha);
-      compSenha = strcmp(cad.senha, cad1.senha);
+      scanf(" %s", cad.senha);
+      compSenha1 = strcmp(cad.senha, cad1.senha);
+      compSenha2 = strcmp(cad.senha, cad2.senha);
+      compSenha3 = strcmp(cad.senha, cad3.senha);
 
-      if ((compLogin == 0) && (compSenha == 0)){
-         printf("\nInforme o que deseja atualizar (n)ome, (e)ndereco? ");
+      if ((compLogin1 == 0) && (compSenha1 == 0)){
+         printf("\nInforme o que deseja atualizar1 (n)ome, (e)ndereco, (t)elefone, (d)ata de nascimento: ");
          getchar();
-         scanf("%c", &opcao3);
+         scanf(" %c", &opcao2);
          getchar();
-         switch(opcao3){
+         switch(opcao2){
             case 'n':
               printf("Informe o novo nome do usuario (ate 30 caracteres): ");
-              gets(cad1.nome);
+              scanf(" %[^\n]", &cad1.nome);
               break;
             case 'e':
               printf("Informe o novo endereco do usuario (ate 50 caracteres): ");
-              gets(cad1.endereco);
+              scanf(" %[^\n]", &cad1.endereco);
               break;
             case 't':
-                printf("Informe o novo telefone do usuario (ate 15 caracteres): ");
-            case 'b':
-               printf("Informe a nova data de nascimento do usuario do usuario" );
+              printf("Informe o novo telefone do usuario (ate 15 caracteres): ");
+              scanf(" %s", &cad1.telefone);
+              break;
+            case 'd':
+              printf("Informe a nova data de nascimenoto do usuario (ate 10 caracteres): ");
+              scanf(" %s", &cad1.dataNascimento);
+              break;
             default:
               printf("\nCAMPO INVALIDO");
          }
-         printf("\n\nUPDATE:\nLogin: %s\nSenha: %s\nNome: %s\nEndereco: %s", cad1.login, cad1.senha, cad1.nome, cad1.endereco);
-      }else
+         printf("\n\nUPDATE:\nLogin: %s\nSenha: %s\nNome: %s\nEndereco: %s\nTelefone: %s\nData de nascimento: %s", cad1.login, cad1.senha, cad1.nome, cad1.endereco, cad1.telefone, cad1.dataNascimento);
+      }
+      else if((compLogin2 == 0) && (compSenha2 == 0)){
+         printf("\nInforme o que deseja atualizar2 (n)ome, (e)ndereco, (t)elefone, (d)ata de nascimento: ");
+         getchar();
+         scanf("%c", &opcao2);
+         getchar();
+         switch(opcao2){
+            case 'n':
+              printf("Informe o novo nome do usuario (ate 30 caracteres): ");
+              scanf(" %[^\n]", &cad2.nome);
+              break;
+            case 'e':
+              printf("Informe o novo endereco do usuario (ate 50 caracteres): ");
+              scanf(" %[^\n]", &cad2.endereco);
+              break;
+            case 't':
+              printf("Informe o novo telefone do usuario (ate 15 caracteres): ");
+              scanf(" %s", &cad2.telefone);
+              break;
+            case 'd':
+              printf("Informe a nova data de nascimenoto do usuario (ate 10 caracteres): ");
+              scanf(" %s", &cad2.dataNascimento);
+              break;
+            default:
+              printf("\nCAMPO INVALIDO");
+         }
+         printf("\n\nUPDATE:\nLogin: %s\nSenha: %s\nNome: %s\nEndereco: %s\nTelefone: %s\nData de nascimento: %s", cad2.login, cad2.senha, cad2.nome, cad2.endereco, cad2.telefone, cad2.dataNascimento);
+      }
+      else if((compLogin3 == 0) && (compSenha3 == 0)){
+        printf("\nInforme o que deseja atualizar3 (n)ome, (e)ndereco, (t)elefone, (d)ata de nascimento: ");
+         getchar();
+         scanf("%c", &opcao2);
+         getchar();
+         switch(opcao2){
+            case 'n':
+              printf("Informe o novo nome do usuario (ate 30 caracteres): ");
+              scanf(" %[^\n]", &cad3.nome);
+              break;
+            case 'e':
+              printf("Informe o novo endereco do usuario (ate 50 caracteres): ");
+              scanf(" %[^\n]", &cad3.endereco);
+              break;
+            case 't':
+              printf("Informe o novo telefone do usuario (ate 15 caracteres): ");
+              scanf(" %s", &cad3.telefone);
+              break;
+            case 'd':
+              printf("Informe a nova data de nascimenoto do usuario (ate 10 caracteres): ");
+              scanf(" %s", cad3.dataNascimento);
+              break;
+            default:
+              printf("\nCAMPO INVALIDO");
+         }
+         printf("\n\nUPDATE:\nLogin: %s\nSenha: %s\nNome: %s\nEndereco: %s\nTelefone: %s\nData de nascimento: %s", cad3.login, cad3.senha, cad3.nome, cad3.endereco, cad3.telefone, cad3.dataNascimento);
+      }
+      
+      else
         printf("\nLOGIN OU SENHA INVALIDOS");
-     }
-    }
 
+    printf("\n\nVOCE DESEJA: (A)TUALIZAR O CADASTRO, (V)ER OS SEUS DADOS, (S)AIR DO PROGRAMA: ");
+    scanf(" %c", &opcao);
+ }
+
+ while((opcao == 'V') || (opcao == 'v')){
+    printf("\nInforme o login do usuario (ate 20 caracteres): ");
+    scanf(" %s", cad.login);
+    compLogin1 = strcmp(cad.login, cad1.login); //Comparação com Strcmp
+    compLogin2 = strcmp(cad.login, cad2.login); 
+    compLogin3 = strcmp(cad.login, cad3.login); 
+    printf("Informe a senha do usuario (ate 20 caracteres): ");
+    scanf(" %s", cad.senha);
+    compSenha1 = strcmp(cad.senha, cad1.senha);
+    compSenha2 = strcmp(cad.senha, cad2.senha);
+    compSenha3 = strcmp(cad.senha, cad3.senha);
+    if((compLogin1 == 0) && compSenha1 == 0){
+        printf("\n\nSEUS DADOS:\nLogin: %s\nSenha: %s\nNome: %s\nEndereco: %s\nTelefone: %s\nData de nascimento: %s", cad1.login, cad1.senha, cad1.nome, cad1.endereco, cad1.telefone, cad1.dataNascimento);
+    }
+    else if((compLogin2 == 0) && compSenha2 == 0){
+      printf("\n\nSEUS DADOS:\nLogin: %s\nSenha: %s\nNome: %s\nEndereco: %s\nTelefone: %s\nData de nascimento: %s", cad2.login, cad2.senha, cad2.nome, cad2.endereco, cad2.telefone, cad2.dataNascimento);
+    }
+    else if((compLogin3 == 0) && compSenha3 == 0){
+      printf("\n\nSEUS DADOS:\nLogin: %s\nSenha: %s\nNome: %s\nEndereco: %s\nTelefone: %s\nData de nascimento: %s", cad3.login, cad3.senha, cad3.nome, cad3.endereco, cad3.telefone, cad3.dataNascimento);
+    }
+    else
+      printf("LOGIN OU SENHA INVALIDO(S)!");
+
+    printf("\n\nVOCE DESEJA: (V)ER OS SEUS DADOS, (S)AIR DO PROGRAMA: ");
+    scanf(" %c", &opcao);
+  }
 }
